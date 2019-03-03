@@ -153,11 +153,11 @@ namespace Rotativa.NetCore
         {
             var switches = string.Empty;
 
-            var cookieOptions = context.HttpContext.RequestServices.GetService<IOptions<CookieAuthenticationOptions>>();
+            var cookieOptions = context.HttpContext.RequestServices.GetService<CookieBuilder>();
 
-            if (cookieOptions.Value != null && !String.IsNullOrEmpty(cookieOptions.Value.CookieName))
+            if (cookieOptions != null)
             {
-                var cookieName = cookieOptions.Value.CookieName;
+                var cookieName = cookieOptions.Name;
 
                 string authenticationCookie = null;
                 if (context.HttpContext.Request.Cookies != null && context.HttpContext.Request.Cookies.ContainsKey(cookieName))
